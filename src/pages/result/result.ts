@@ -235,28 +235,66 @@ export class ResultPage {
             if (this.tableAnswer[28].answerUser > 10)
                 this.resultRisk += 2;
         }
-        if (this.resultRisk >= 200)
-            this.riskAssessment = "D'après vos réponses, vous présentez une grossesse à risque. Il serait préférable d'être suivie dans une maternité de type 3.";
-        else if (this.resultRisk >= 50)
-            this.riskAssessment = "D'après vos réponses, vous présentez une grossesse à risque. Veillez à effectuer un suivi régulier dans la maternité de votre choix.";
-        else if (this.resultRisk >= 20)
-            this.riskAssessment = "D'après vos réponses vous présentez une grossesse à risque. Veillez à effectuer un suivi régulier dans la maternité de votre choix.";
-        else
-            this.riskAssessment = "D'après vos réponses vous présentez une grossesse à bas risque.";
-        console.log("debut risk");
-        if (this.tableAnswer[6].answerUser == 0 && this.tableAnswer[3].answerUser == true)
-            this.resultSlide.push(
+        if (this.tableAnswer[2].answerUser == true)
+        {
+            if (this.resultRisk >= 200)
+                this.riskAssessment = "D'après vos réponses, vous présentez une grossesse à risque. Il serait préférable d'être suivie dans une maternité de type 3.";
+            else if (this.resultRisk >= 50)
+                this.riskAssessment = "D'après vos réponses, vous présentez une grossesse à risque. Veillez à effectuer un suivi régulier dans la maternité de votre choix.";
+            else if (this.resultRisk >= 20)
+                this.riskAssessment = "D'après vos réponses vous présentez une grossesse à risque. Veillez à effectuer un suivi régulier dans la maternité de votre choix.";
+            else
+                this.riskAssessment = "D'après vos réponses vous présentez une grossesse à bas risque.";
+        }
+        else 
+        {
+            if (this.resultRisk >= 200)
+                this.riskAssessment = "D'après vos réponses, votre futur grossesse sera à risque. Il serait préférable d'être suivie dans une maternité de type 3.";
+            else if (this.resultRisk >= 50)
+                this.riskAssessment = "D'après vos réponses, votre futur grossesse sera à risque. Veillez à effectuer un suivi régulier dans la maternité de votre choix.";
+            else if (this.resultRisk >= 20)
+                this.riskAssessment = "D'après vos réponses votre futur grossesse sera à risque. Veillez à effectuer un suivi régulier dans la maternité de votre choix.";
+            else
+                this.riskAssessment = "D'après vos réponses votre futur grossesse sera à bas risque.";
+        }
+        if (this.tableAnswer[1].answerUser == 2)
+        {
+            this.tableAnswer[33].answerUser =  Math.round((( new Date().getTime() - this.tableAnswer[2].answerUser.getTime() ) / (1000 * 60 * 60 * 24 )) / 7);
+            this.tableAnswer[34].answerUser = this.tableAnswer[33].answerUser;
+
+            this.result = 4 - this.tableAnswer[33].answerUser;
+            if (this.result > 0)
+                this.resultSlide.push(
+                {
+                    type: "positif",
+                    title:  "Attendez encore un peu pour faire un test de grossesse"
+                });
+            else
+                this.resultSlide.push(
+                {
+                    type: "positif",
+                    title:  "Faites un test de grossesse"
+                });
+        }
+        if (this.tableAnswer[6].answerUser == 0 && this.tableAnswer[3].answerUser == 1)
+        {
+            if (this.tableAnswer[3].answerUser == 1)
             {
-                type: "positif",
-                title:  "Félicitations vous allez avoir votre premier enfant"
-            });
-        else if (this.tableAnswer[3].answerUser == true)
+                this.resultSlide.push(
+                {
+                    type: "positif",
+                    title:  "Félicitations vous allez avoir votre premier enfant"
+                });
+            }
+        }
+        else if (this.tableAnswer[3].answerUser == 1 && this.tableAnswer[1].answerUser == 1)
+        {
             this.resultSlide.push(
             {
                 type: "positif",
                 title: "Félicitations vous êtes enceinte !"
             });
-        
+        }
 
         if (this.tableAnswer[0].answerUser < 42 && this.tableAnswer[0].answerUser >= 38)
             this.resultSlide.push(
@@ -283,12 +321,12 @@ export class ResultPage {
                 type: "positif",
                 title: "Être plus âgée pour élever ses enfants est aussi un gage de maturité !"
             });
-             this.resultSlide.push(
+            this.resultSlide.push(
             {
                 type: "conseil",
                 title: "Nous vous conseillons d'effectuer les dépistages d'anomalies chromosiques foetale(s)."
             });
-            }
+        }
         if (this.tableAnswer[5].answerUser == true && this.tableAnswer[1].answerUser == true)
             this.resultSlide.push(
             {
@@ -340,12 +378,12 @@ export class ResultPage {
                 type: "risk",
                 title:"Vous avez eu un enfant de - de 2kg200 qui n'était pas prématuré, il s'agit donc d'un antécédent de retard de croissance intra-utérin. "
             });
-           this.resultSlide.push(
+            this.resultSlide.push(
             {
                 type: "positif",
                 title:"Vous avez 9 chances sur 10 d’avoir un bébé de poids normal cette fois ci !"
             });
-        
+
         }
         if (this.tableAnswer[18].answerUser >= 3)
         {
@@ -390,7 +428,7 @@ export class ResultPage {
                 type: "risk",
                 title:"Votre consommation d’alcool est trop élevée. Votre bébé court des risques importants de malformations et de retard mental."
             });
-                  if (this.tableAnswer[19].answerUser >= 10 && this.tableAnswer[1].answerUser == true)
+        if (this.tableAnswer[19].answerUser >= 10 && this.tableAnswer[1].answerUser == true)
             this.resultSlide.push(
             {
                 type: "conseil",
@@ -420,7 +458,7 @@ export class ResultPage {
                 type: "conseil",
                 title:"Votre grossesse pourrait déséquilibrer votre traitement, il serait préférable que vous soyez prise en charge par une équipe spécialisée pour le choix des anticoagulents et leur dosage ainsi que pour la mise en place d'une surveillance foetale adaptée."
             });
-     
+
         if (this.tableAnswer[22].answerUser == true)
             this.resultSlide.push(
             {
@@ -491,7 +529,7 @@ export class ResultPage {
                 title:"Votre nombre d'heures de travail est vraiment très élevé."
             });
         
-       
+
 
         
         if (!this.tableAnswer[28].answerUser)
@@ -518,7 +556,7 @@ export class ResultPage {
                 type: "conseil",
                 title:"Rapprochez-vous de votre direction pour une éventuelle mise en place de télétravail afin de diminuer les temps de trajets"
             });
-         if (this.tableAnswer[31].answerUser == true)
+        if (this.tableAnswer[31].answerUser == true)
             this.resultSlide.push(
             {
                 type: "risk",
@@ -531,7 +569,7 @@ export class ResultPage {
                 title:"Rapprochez-vous de votre direction pour un éventuel aménagement de vos conditions de travail. Vous risquez d'être en difficulté pendant votre grossesse si vous restez debout plus de 6 heures par jour."
             });
         
-       
+
 
         this.answers = this.resultSlide.concat(this.psycho);
         console.log(this.answers);

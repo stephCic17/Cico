@@ -265,7 +265,7 @@ export class RetryPage {
 		next() {
 			Stat.push({
 				id: 1,
-				type: "begin",
+				type: "Retry",
 				title: "clic next after begin",
 				timestamp: Date.now()
 			});

@@ -37,7 +37,9 @@ export class HomePage {
 	questionForm:any;
 
 
-	constructor(private renderer: Renderer, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) { }
+	constructor(private renderer: Renderer, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) { 
+		
+	}
 	ngOnInit() {
 		var self = this;
 		this.activeLogoWrapper = true;
@@ -53,13 +55,12 @@ export class HomePage {
 
 		this.answer = [];
 		this.Questions = Questions;
-		console.log(this.Questions);
-
-	}
+		}
 
 	init() {
 		this.isInitialized = true;
 		this.currentStep = this.sliderOne.getActiveIndex();
+
 		this.totalStep = this.sliderOne.length();
 		//		this.sliderOne.lockSwipeToPrev(true);
 		this.sliderOne.lockSwipes(true);
@@ -80,6 +81,7 @@ export class HomePage {
 		}
 
 		ngAfterViewInit() {
+
 		}
 
 		handleNext() {
@@ -97,7 +99,6 @@ export class HomePage {
 				title: "clic next",
 				timestamp: Date.now()
 			});
-			console.log(Stat);
 			this.questionForm = question;
 			if (this.questionForm.type == "number")
 			{
@@ -178,7 +179,6 @@ export class HomePage {
 			}
 			else if (this.questionForm.type == "date")
 			{
-				console.log(this.Questions[2]);
 
 				if (this.Questions[1].answerUser == 2)
 					this.Questions[3].title = "Désireriez-vous cette grossesse ?";
@@ -228,6 +228,9 @@ export class HomePage {
 			if (this.Questions[this.currentStep-1])
 				this.Questions[this.currentStep-1].prevStep = this.questionForm.id;
 
+			console.log("questions", this.Questions);
+
+		
 			this.number = false;
 			this.yes = false;
 			this.no = false;
@@ -245,12 +248,9 @@ export class HomePage {
 			this.answer.ten = false;
 			this.answer.eleven = false;
 			this.answer.twelve = false;
-
-			console.log("questions", this.Questions);
 		}
 
 		manageSlideTo() {
-			console.log("mange");
 			this.sliderOne.lockSwipes(false);
 			if (this.currentStep == 99) {
 				console.log("next == 99");
@@ -264,7 +264,6 @@ export class HomePage {
 		}
 
 		next() {
-			console.log("next");
 			Stat.push({
 				id: 1,
 				type: "begin",
@@ -277,7 +276,6 @@ export class HomePage {
 			this.manageSlideTo();
 		}
 		prev() {
-			console.log("prev");
 			this.currentStep--;
 			this.manageSlideTo();
 		}
@@ -288,7 +286,6 @@ export class HomePage {
 				title: "clic prev",
 				timestamp: Date.now()
 			});
-			console.log("prevStepFunction");
 			this.currentStep = question.prevStep;
 			this.manageSlideTo();
 		}
@@ -305,7 +302,6 @@ export class HomePage {
 						title: "question",
 						timestamp: Date.now()
 					});
-					console.log(Stat);
 					this.no = false;
 					this.idn = false;
 					this.yes = true;
@@ -320,7 +316,6 @@ export class HomePage {
 					title: "question",
 					timestamp: Date.now()
 				});
-				console.log(Stat);
 				if (this.no == false)
 				{
 					this.yes = false;
@@ -338,7 +333,6 @@ export class HomePage {
 						title: "question",
 						timestamp: Date.now()
 					});
-					console.log(Stat);
 					this.no = false;
 					this.yes = false;
 					this.idn = true;

@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ResultPage } from '../pages/result/result';
 import { IvgInfoPage } from '../pages/ivg-info/ivg-info';
+import { RetryPage } from '../pages/retry/retry';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -16,7 +17,8 @@ import { IonicStorageModule } from '@ionic/storage';
     MyApp,
     HomePage,
     ResultPage,
-    IvgInfoPage
+    IvgInfoPage,
+    RetryPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { IonicStorageModule } from '@ionic/storage';
     MyApp,
      HomePage,
     ResultPage,
-    IvgInfoPage
+    IvgInfoPage,
+    RetryPage
 
   ],
   providers: [

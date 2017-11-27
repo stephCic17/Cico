@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
-
+import { RetryPage } from '../retry/retry';
 /**
  * Generated class for the IvgInfoPage page.
  *
@@ -33,6 +32,8 @@ import { HomePage } from '../home/home';
  	}
 
     nextBegin(){
-        this.navCtrl.push(HomePage);
+        this.navCtrl.push(RetryPage, {
+        	userParams: this.tableAnswer
+        });
     }
  }

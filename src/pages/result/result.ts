@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
+import { RetryPage } from '../retry/retry';
 
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
@@ -50,7 +50,7 @@ export class ResultPage {
             timestamp: Date.now()
         });
         console.log(Stat);        
-        this.navCtrl.push(HomePage);
+        this.navCtrl.push(RetryPage);
     }
 
     ngAfterViewInit() {

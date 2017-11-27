@@ -5,15 +5,14 @@ import { IvgInfoPage } from '../ivg-info/ivg-info';
 
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
-import Questions from './questionFile';
 import Stat from '../../app/statistique';
 
 @Component({
-	selector: 'page-home',
-	templateUrl: 'home.html'
+	selector: 'page-retry',
+	templateUrl: 'retry.html'
 })
 
-export class HomePage {
+export class RetryPage {
 	@ViewChild('sliderOne') sliderOne: Slides;
 	@ViewChild('realFormButton') realFormButton;
 
@@ -38,7 +37,8 @@ export class HomePage {
 
 
 	constructor(private renderer: Renderer, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) { 
-		
+		this.Questions = navParams.get('userParams');
+
 	}
 	ngOnInit() {
 		var self = this;
@@ -54,7 +54,6 @@ export class HomePage {
 		}, 2500);
 
 		this.answer = [];
-		this.Questions = Questions;
 		}
 
 	init() {
@@ -63,7 +62,7 @@ export class HomePage {
 
 		this.totalStep = this.sliderOne.length();
 		//		this.sliderOne.lockSwipeToPrev(true);
-		this.sliderOne.lockSwipes(true);
+		//this.sliderOne.lockSwipes(true);
 		// setTimeout(function(){
 			// }, 500);
 		}
@@ -251,7 +250,7 @@ export class HomePage {
 		}
 
 		manageSlideTo() {
-			this.sliderOne.lockSwipes(false);
+			//this.sliderOne.lockSwipes(false);
 			if (this.currentStep == 99) {
 				console.log("next == 99");
 				this.navCtrl.push(ResultPage, {
@@ -260,7 +259,7 @@ export class HomePage {
 			}
 			else
 				this.sliderOne.slideTo(this.currentStep, 350);
-			this.sliderOne.lockSwipes(true);
+		//	this.sliderOne.lockSwipes(true);
 		}
 
 		next() {
